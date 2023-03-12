@@ -92,3 +92,81 @@
   </body>
 
 </html>
+
+<script>
+  //   Object Arrary 대해서 학습한다.
+  // Object Arrary 생성
+
+  const objarray = [
+    { text: 'One', value: 'A', id: 'dfad3r' },
+    { text: 'Two', value: 'B', id: '35ffete' },
+    { text: 'Three', value: 'C', id: 'e66reag' },
+
+  ];
+
+
+  // objarray 에 { text: 'Four', value: 'D' } 를 추가하시오.
+  objarray.push({ text: 'Four', value: 'D' })
+  console.log(objarray);
+
+
+  // objarray 에서 filter 메서드를 사용하여 text의 값이 'One' 인 객체들을 찾고 찾은 결과를 console.log 로 출력하시오
+  const objarrayFilter = objarray.filter((value, index, array) => {
+
+    // debugger;
+    // return true;
+    //하면, 똑같은 값이 복제됨
+    if (value.text === 'One')
+      return true;
+    else
+      return false
+
+  })
+  console.log(objarrayFilter)
+
+
+  // objarray 에서 filter 메서드를 사용하여 { text: 'Three', value: 'C' } 를 삭제하고 결과를 console.log 로 출력하시오
+  const arrDelete = objarray.filter((value, index, array) => {
+    if (value.text === 'Three' && value.value === 'C') {
+      return false;
+    }
+    else
+      return true
+  })
+  console.log(arrDelete)
+
+
+  // objarray 에서 map 메서드를 사용하여 no 프로퍼티 추가하시오
+
+  //   [
+  //     { text: 'One', value: 'A', no: 0 },
+  //     { text: 'Two', value: 'B', no: 1 },
+  //     { text: 'Four', value: 'D', no: 2 },
+  //     ]
+  const arrMap = arrDelete.map((value, index, array) => {
+    // debugger;
+    value.no = index
+    return value
+
+  })
+  console.log(arrMap);
+
+  // objarray 에서 reduce 메서드를 사용하여 각 요소의 value 프로퍼티 를 합쳐서 하나의 문자열로 만드시오
+  // map을 이용하여 value 값만 들어있는 배열을 만들고 reduce를 이용하여 하나의 문자열로 만든다.
+
+  //     ABD 가 출력
+
+  const arrValues = objarray.map((obj, index, array) => {
+    //debugger;
+    return obj.value;
+  })
+  console.log(arrValues);
+
+  // console.log(arrValues.join('')); //->ABCD
+  const str = arrValues.reduce((pvalue, cvalue, index, array) => {
+    //debugger
+    return pvalue + cvalue
+  }, '')
+
+  console.log(str);
+</script>
