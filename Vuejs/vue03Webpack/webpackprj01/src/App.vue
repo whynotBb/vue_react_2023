@@ -1,9 +1,39 @@
 <style scoped>
+header {
+  text-align: center;
+  height: 60px;
+}
+
 section {
+  text-align: center;
   height: 150px;
+}
+
+footer {
+  text-align: center;
+  height: 60px;
+}
+
+/* step2. 배경색 지정*/
+header {
+  background-color: #efb14e;
+}
+
+section {
   background-color: #95db5e;
-  margin: 0 5% 20px 5%;
-  margin: 40px 0px;
+}
+
+footer {
+  background-color: #78d0d1;
+}
+
+/* step3. 여백 주기 - margin , padding */
+header {
+  margin: 0 0 20px 0;
+}
+
+section {
+  margin: 40px 20px;
 }
 
 div {
@@ -12,30 +42,26 @@ div {
 </style>
 
 <template>
-  <div class="container">
-    <header-comp></header-comp>
-
+  <div>
+    <HeaderComp></HeaderComp>
     <section id="page1" data-role="page">
       <div class="content" data-role="content">컨텐츠</div>
     </section>
-
-    <footer-comp></footer-comp>
+    <FooterComp></FooterComp>
   </div>
 </template>
 
 <script>
-import Header from './HeaderComp.vue';
-import Footer from './FooterComp.vue';
-
+// vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
+// import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
+import HeaderComp from './HeaderComp.vue';
+import FooterComp from './FooterComp.vue';
 export default {
-  data() {
-    return {
-      msg: 'Hello VueJS',
-    };
-  },
   components: {
-    'header-comp': Header,
-    'footer-comp': Footer,
+    /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
+    /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
+    HeaderComp: HeaderComp,
+    FooterComp: FooterComp,
   },
 };
 </script>

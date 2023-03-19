@@ -1,3 +1,6 @@
+"use strict";
+
+var _console;
 /*
 
   스프레드 사용법을 학습한다.
@@ -19,3 +22,17 @@
     iterator를 생성해서 next()로 순회할 수 있는 자료구조가 이터러블
 
 */
+
+var cities = ['서울', '부산', '제주'];
+console.log(cities[0], cities[1], cities[2]);
+(_console = console).log.apply(_console, cities);
+var east = ['U', 'K', 'T'];
+var west = ['N', 'C', 'G'];
+var countries1 = [].concat(east).concat(west);
+console.log(countries1);
+var countries2 = [].concat(east, west);
+console.log(countries2);
+var lakes = ['경포호', '화진포', '송지호', '청초호'];
+var first = lakes[0],
+  rest = lakes.slice(1); //구조분해할당
+console.log(first, rest);
