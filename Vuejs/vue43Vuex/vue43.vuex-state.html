@@ -168,6 +168,7 @@
         # 기능별로 vuex의 상태를 분리하기 위해서 modules
         $ mkdir -p ./src/store/modules
 
+        modules 는 기능별로 만드는게좋다. -> 로그인 긴으, 게시판기능 등
     작업2-2. store 파일 생성
         $ touch ./src/store/index.js   # 있을 수도 있음.
         $ touch ./src/store/modules/counterStore.js
@@ -218,7 +219,7 @@
         export default store;
 
 
-    작업2-4. 작성 모듈 등록
+    작업2-4. 작성한 모듈 등록
         // 파일 위치: /src/store/index.js
 
         import { createStore } from 'vuex';
