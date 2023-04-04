@@ -15,7 +15,10 @@ body {
     <TodoHeader></TodoHeader>
 
     <!-- TodoInput -->
-    <TodoInput v-on:addTodo="addTodo"></TodoInput>
+    <TodoInput
+      v-bind:newTodoItem="newTodoItem"
+      v-on:addTodo="addTodo"
+    ></TodoInput>
 
     <!-- TodoList -->
     <!-- "checked(todoItem.done)"  <==> "todoItem.done ? 'checked': null "  -->
@@ -60,8 +63,8 @@ export default {
       this.$data.todoItems = [];
     },
     addTodo(e) {
-      debugger;
-      console.log(e.target);
+      // debugger;
+      console.log(e);
     },
     removeTodo(e) {
       debugger;
