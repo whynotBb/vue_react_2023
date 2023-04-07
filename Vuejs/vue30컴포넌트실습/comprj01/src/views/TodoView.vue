@@ -62,9 +62,25 @@ export default {
       console.log(e.target);
       this.$data.todoItems = [];
     },
-    addTodo(e) {
+    addTodo(newTodoItem) {
       // debugger;
-      console.log(e);
+      console.log('e', newTodoItem);
+      const ids = this.$data.todoItems.map((value, index, array) => {
+        return value.id;
+        //아이디만 있는 배열 만들기
+      });
+      const maxid = ids.reduce((pvalue, cvalue, index, array) => {
+        if (pvalue > cvalue) return pvalue;
+        else return cvalue;
+      }, 0);
+      const newitem = {
+        id: maxid + 1,
+        todo: newTodoItem,
+        done: false,
+      };
+      console.log(newitem);
+      //배열 복제 + 할당
+      this.$data.todoItems = [newitem, ...this.$data.todoItems];
     },
     removeTodo(e) {
       debugger;

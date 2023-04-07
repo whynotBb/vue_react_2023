@@ -115,8 +115,8 @@ input:focus {
       v-model.trim:value="newTodoItem"
       v-on:keyup.enter="addTodo"
     />
-    <span class="addContainer">
-      <i aria-hidden="true" class="addBtn fas fa-plus" v-on:click="addTodo"></i>
+    <span class="addContainer" v-on:click="addTodo">
+      <i aria-hidden="true" class="addBtn fas fa-plus"></i>
     </span>
   </div>
 </template>
@@ -129,13 +129,14 @@ export default {
   props: [],
   data() {
     return {
-      newTodoItem: '',
+      newTodoItem: null,
     };
   },
   methods: {
-    addTodo(e, newTodoItem) {
+    addTodo(newTodoItem) {
       console.log('newTodoItem', newTodoItem);
-      this.$emit('addTodo', newTodoItem);
+      this.$emit('addTodo', this.$data.newTodoItem);
+      this.$data.newTodoItem = null;
     },
   },
   components: {},
