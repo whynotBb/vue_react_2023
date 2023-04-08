@@ -58,7 +58,7 @@ export default {
   methods: {
     /* 이벤트 핸들러 등록 + 일반 함수 */
     clearAll(e) {
-      debugger;
+      // debugger;
       console.log(e.target);
       this.$data.todoItems = [];
     },
@@ -83,7 +83,7 @@ export default {
       this.$data.todoItems = [newitem, ...this.$data.todoItems];
     },
     removeTodo(e) {
-      debugger;
+      // debugger;
       console.log(e);
       const newItems = this.$data.todoItems.filter((value) => {
         if (value.id === e.id) {
@@ -95,7 +95,7 @@ export default {
       this.$data.todoItems = newItems;
     },
     doneToggle(e) {
-      debugger;
+      // debugger;
       console.log(e);
       //e => todoItem
       //복제후할당

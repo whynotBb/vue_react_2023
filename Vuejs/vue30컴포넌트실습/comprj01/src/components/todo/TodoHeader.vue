@@ -17,8 +17,5 @@ export default {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {};
   },
-  methods: {},
-  components: {},
-  computed: {},
 };
 </script>
