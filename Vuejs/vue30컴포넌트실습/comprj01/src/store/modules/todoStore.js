@@ -18,9 +18,14 @@ const store = {
       commit('get', payload);
     },
     clearAll(mutations /* 고정 */, payload) {
-      debugger;
+      // debugger;
       const { commit } = mutations;
       commit('clearAll', payload);
+    },
+    addTodo(mutations /* 고정 */, payload) {
+      // debugger;
+      const { commit } = mutations;
+      commit('addTodo', payload);
     },
   },
   mutations: {
@@ -36,8 +41,12 @@ const store = {
       state.인자 = param;
     },
     clearAll(state, param) {
-      debugger;
+      // debugger;
       state.todoItems = param;
+    },
+    addTodo(state, param) {
+      debugger;
+      state.addTodo = [param, ...state.todoItems];
     },
   },
   state: {

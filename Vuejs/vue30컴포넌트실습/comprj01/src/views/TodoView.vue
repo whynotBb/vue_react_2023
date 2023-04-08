@@ -59,17 +59,18 @@ export default {
     ...mapActions('todoStore', {
       dispatchSet: 'set',
       dispatchGet: 'get',
-      dispatchSeClearAll: 'clearAll',
+      dispatchClearAll: 'clearAll',
+      dispatchAddTodo: 'addTodo',
     }),
     clearAll(e) {
       // debugger;
       console.log(e.target);
-      this.dispatchSeClearAll();
+      this.dispatchClearAll('');
     },
     addTodo(newTodoItem) {
       // debugger;
       console.log('e', newTodoItem);
-      const ids = this.$data.todoItems.map((value, index, array) => {
+      const ids = this.$store.todoItems.map((value, index, array) => {
         return value.id;
         //아이디만 있는 배열 만들기
       });
@@ -84,8 +85,28 @@ export default {
       };
       console.log(newitem);
       //배열 복제 + 할당
-      this.$data.todoItems = [newitem, ...this.$data.todoItems];
+      this.dispatchAddTodo(newitem);
     },
+    // addTodo(newTodoItem) {
+    //   // debugger;
+    //   console.log('e', newTodoItem);
+    //   const ids = this.$data.todoItems.map((value, index, array) => {
+    //     return value.id;
+    //     //아이디만 있는 배열 만들기
+    //   });
+    //   const maxid = ids.reduce((pvalue, cvalue, index, array) => {
+    //     if (pvalue > cvalue) return pvalue;
+    //     else return cvalue;
+    //   }, 0);
+    //   const newitem = {
+    //     id: maxid + 1,
+    //     todo: newTodoItem,
+    //     done: false,
+    //   };
+    //   console.log(newitem);
+    //   //배열 복제 + 할당
+    //   this.$data.todoItems = [newitem, ...this.$data.todoItems];
+    // },
     removeTodo(e) {
       // debugger;
       console.log(e);
