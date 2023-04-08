@@ -17,10 +17,10 @@ const store = {
       const { commit } = mutations;
       commit('get', payload);
     },
-    setAdd(mutations /* 고정 */, payload) {
+    clearAll(mutations /* 고정 */, payload) {
       debugger;
       const { commit } = mutations;
-      commit('setAdd', payload);
+      commit('clearAll', payload);
     },
   },
   mutations: {
@@ -35,16 +35,20 @@ const store = {
     get(state /* 고정 */, param /* mutations.commit 호출시 넘겨지는 값 */) {
       state.인자 = param;
     },
-    setAdd(state, param) {
+    clearAll(state, param) {
       debugger;
-      state.newTodoItem = state.counter + param;
+      state.todoItems = param;
     },
   },
   state: {
     /* vue인스턴스나 컴포넌트의 data 프로퍼티에 해당 */
     인자: 'STORE STATE',
-    welcome: 'HELLO WORLD Vuex',
-    counter: 10,
+    todoItems: [
+      { id: 1, todo: '영화보기', done: false },
+      { id: 2, todo: '주말 산책', done: true },
+      { id: 3, todo: 'ES6 학습', done: false },
+      { id: 4, todo: '잠실 야구장', done: false },
+    ],
   },
   getters: {
     /* state 변경 정보를 컴포넌트에 전달하는 역활.
@@ -57,11 +61,8 @@ const store = {
       return state.인자;
     },
 
-    welcome(state /* 고정 */) {
-      return state.welcome;
-    },
-    counter(state /* 고정 */) {
-      return state.counter;
+    todoItems(state /* 고정 */) {
+      return state.todoItems;
     },
   },
 };

@@ -72,11 +72,12 @@ li.checked {
 
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
-// import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
+import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
 
 export default {
   /* pdtmc^2w */
-  props: ['todoItems'],
+  // props: ['todoItems'],
+  props: [],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {
@@ -90,7 +91,7 @@ export default {
       return done === true ? 'checked' : null;
     },
     doneToggle(e, todoItem) {
-      debugger;
+      // debugger;
       console.log(todoItem);
       this.$emit('doneToggle', todoItem);
       e.stopPropagation();
@@ -118,6 +119,7 @@ export default {
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
   },
   computed: {
+    ...mapGetters('todoStore', ['todoItems']),
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */
     /* vuex 를 사용하는 경우
       mapGetters 는 store의 getters 를 가져오는 헬퍼메서드입니다.
