@@ -27,6 +27,16 @@ const store = {
       const { commit } = mutations;
       commit('addTodo', payload);
     },
+    removeTodo(mutations /* 고정 */, payload) {
+      // debugger;
+      const { commit } = mutations;
+      commit('removeTodo', payload);
+    },
+    doneToggle(mutations /* 고정 */, payload) {
+      // debugger;
+      const { commit } = mutations;
+      commit('doneToggle', payload);
+    },
   },
   mutations: {
     /* 왜 mutations 를 사용하나? state 를 바꾸기 위해서
@@ -44,9 +54,40 @@ const store = {
       // debugger;
       state.todoItems = param;
     },
+    removeTodo(state, param) {
+      const newItems = state.todoItems.filter((value) => {
+        if (value.id === param) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      state.todoItems = newItems;
+    },
+    doneToggle(state, param) {
+      const newItems = state.todoItems.map((value) => {
+        if (value.id === param) {
+          value.done = !value.done;
+        }
+        return value;
+      });
+      state.todoItems = newItems;
+    },
     addTodo(state, param) {
       debugger;
-      state.addTodo = [param, ...state.todoItems];
+      const ids = state.todoItems.map((value, index, array) => {
+        return value.id;
+      });
+      const maxid = ids.reduce((pvalue, cvalue, index, array) => {
+        if (pvalue > cvalue) return pvalue;
+        else return cvalue;
+      }, 0);
+      const newitem = {
+        id: maxid + 1,
+        todo: param,
+        done: false,
+      };
+      state.todoItems = [newitem, ...state.todoItems];
     },
   },
   state: {

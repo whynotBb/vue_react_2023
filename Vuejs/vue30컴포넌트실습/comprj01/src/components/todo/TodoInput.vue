@@ -133,9 +133,9 @@ export default {
     };
   },
   methods: {
-    addTodo(newTodoItem) {
+    addTodo(e, newTodoItem) {
       console.log('newTodoItem', newTodoItem);
-      this.$emit('addTodo', this.$data.newTodoItem);
+      this.$emit('addTodo', e, this.$data.newTodoItem);
       this.$data.newTodoItem = null;
     },
   },

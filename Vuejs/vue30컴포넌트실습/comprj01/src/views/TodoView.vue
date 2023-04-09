@@ -61,76 +61,29 @@ export default {
       dispatchGet: 'get',
       dispatchClearAll: 'clearAll',
       dispatchAddTodo: 'addTodo',
+      dispatchRemoveTodo: 'removeTodo',
+      dispatchDoneToggle: 'doneToggle',
     }),
     clearAll(e) {
       // debugger;
       console.log(e.target);
       this.dispatchClearAll('');
     },
-    addTodo(newTodoItem) {
-      // debugger;
+    addTodo(e, newTodoItem) {
       console.log('e', newTodoItem);
-      const ids = this.$store.todoItems.map((value, index, array) => {
-        return value.id;
-        //아이디만 있는 배열 만들기
-      });
-      const maxid = ids.reduce((pvalue, cvalue, index, array) => {
-        if (pvalue > cvalue) return pvalue;
-        else return cvalue;
-      }, 0);
-      const newitem = {
-        id: maxid + 1,
-        todo: newTodoItem,
-        done: false,
-      };
-      console.log(newitem);
-      //배열 복제 + 할당
-      this.dispatchAddTodo(newitem);
+      this.dispatchAddTodo(newTodoItem);
     },
-    // addTodo(newTodoItem) {
-    //   // debugger;
-    //   console.log('e', newTodoItem);
-    //   const ids = this.$data.todoItems.map((value, index, array) => {
-    //     return value.id;
-    //     //아이디만 있는 배열 만들기
-    //   });
-    //   const maxid = ids.reduce((pvalue, cvalue, index, array) => {
-    //     if (pvalue > cvalue) return pvalue;
-    //     else return cvalue;
-    //   }, 0);
-    //   const newitem = {
-    //     id: maxid + 1,
-    //     todo: newTodoItem,
-    //     done: false,
-    //   };
-    //   console.log(newitem);
-    //   //배열 복제 + 할당
-    //   this.$data.todoItems = [newitem, ...this.$data.todoItems];
-    // },
     removeTodo(e) {
       // debugger;
       console.log(e);
-      const newItems = this.todoItems.filter((value) => {
-        if (value.id === e.id) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-      this.todoItems = newItems;
+      this.dispatchRemoveTodo(e.id);
     },
     doneToggle(e) {
       // debugger;
       console.log(e);
       //e => todoItem
       //복제후할당
-      const newItems = this.todoItems.map((value) => {
-        if (value.id === e.id) {
-          value.done = !value.done;
-        }
-        return value;
-      });
-      this.todoItems = newItems;
+      this.dispatchDoneToggle(e.id);
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
