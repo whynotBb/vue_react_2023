@@ -38,3 +38,14 @@ var type = car.type,
   model = car.model,
   gear = car.gear;
 console.log(type, color, model, gear);
+
+// 함수의 매개변수로 분해할당을 사용해본다
+// 함수의 매개변수의 분해할당 적용
+var func2 = function func2(_ref) {
+  var type = _ref.type,
+    color = _ref.color;
+  // const { type, color } = car;
+  debugger;
+  console.log(type, color);
+};
+func2(car);

@@ -34,3 +34,22 @@ console.log(countries2);
 const lakes = ['경포호', '화진포', '송지호', '청초호'];
 const [first, ...rest] = lakes; //구조분해할당
 console.log(first, rest);
+
+const morning = {
+  breakfast: '미역국',
+  lunch: '삼치구이',
+};
+const dinner = '스테이크';
+
+const meals = {
+  ...morning,
+  dinner,
+};
+console.log(meals);
+
+function childComponent(...props) {
+  console.log(props);
+}
+
+const msg = 'passed from parent component';
+childComponent(...msg);
