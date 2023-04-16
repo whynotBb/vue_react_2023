@@ -34,3 +34,64 @@
     <div id="app"></div>
   </body>
 </html>
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6 ==> ES5, JSX ==> ES5  */
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.js"
+  crossorigin="anonymous">
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  ReactDOM.render(<Greeting isLoggedIn={true} />, document.getElementById('app'));
+
+  //const isLoggedIn = props.isLoggedIn;
+  function Greeting({ isLoggedIn }) {
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+
+    // if (isLoggedIn) {
+    //   return <UserGreeting />;
+    // }
+    // return <GuestGreeting />;
+    return (
+      <div>
+        {!isLoggedIn && (<GuestGreeting />)}
+        {isLoggedIn && (<UserGreeting />)}
+      </div>
+    )
+  }
+
+
+  function GuestGreeting({
+    ...props
+  }) {
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+    return (
+      <div>
+        GuestGreeting
+      </div>
+    );
+  }
+
+  function UserGreeting({
+    ...props
+  }) {
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+    return (
+      <div>
+        UserGreeting
+      </div>
+    );
+  }
+
+</script>

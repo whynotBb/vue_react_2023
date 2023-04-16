@@ -51,7 +51,7 @@
 
 const [arr, setArr] = useState([1, 2, 3, 4, 5]);
 
-0. 배열 요소 직접 변경시 현상 확인 
+0. 배열 요소 직접 변경시 현상 확인
     console.log('변경 전:', arr);
     arr[0] = 100;
     console.log('변경 후:', arr);
@@ -88,3 +88,91 @@ const [arr, setArr] = useState([1, 2, 3, 4, 5]);
     </div>
   </body>
 </html>
+
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6 ==> ES5, JSX ==> ES5  */
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.js"
+  crossorigin="anonymous">
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  // id="app" 인 태그 에 컴포넌트를 화면에 붙이시오
+  // ReactDOM.render( 인자1, 인자2 )
+  ReactDOM.render(<Comp />, document.getElementById('app'));
+
+  // 단축키 rfc
+  function Comp({
+    ...props
+  }) {
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [arr, setArr] = useState([1, 2, 3, 4, 5]); // 상태값이 기본타입인 경우
+
+
+    const handlerChange1 = (e) => {
+      console.log(e.target);
+      // console.log(arr);
+      // debugger;
+      // arr[0] = 100;
+      // console.log(arr);
+
+      setArr([100, 2, 3, 4, 5])// 새 배열 생성 후 할당
+    };
+    const handlerChange2 = (e) => {
+      console.log(e.target);
+      const findIndex = arr.indexOf(2) // 값으로 2가 있는 첫번째 index 찾아
+      const newArr = arr.map((value, index, array) => {
+        if (findIndex === index) {
+          return 300;
+        }
+        else {
+          return value
+        }
+      })
+
+      setArr(newArr);
+    };
+    const handlerChange3 = (e) => {
+      console.log(e.target);
+      const newArr = arr.filter((value, index, array) => {
+        if (index < 2) {
+          return false
+        } else {
+          return true
+        }
+      })
+      setArr(newArr)
+    };
+    const handlerChange4 = (e) => {
+      console.log(e.target);
+      const arr_copy = [500, ...arr, 70];
+      setArr(arr_copy)
+    };
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div id="app">
+        <div>
+          {arr.map((value, index) => (<span key={index}> {value} </span>))}
+          <br />
+          <button onClick={handlerChange1}>방법1로 변경</button>
+          <button onClick={handlerChange2}>방법2로 변경</button>
+          <button onClick={handlerChange3}>방법3로 변경</button>
+          <button onClick={handlerChange4}>방법4로 변경</button>
+        </div>
+      </div>
+    );
+  }
+
+</script>
