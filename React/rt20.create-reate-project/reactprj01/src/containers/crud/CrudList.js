@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import CrudListItem from './CrudListItem';
 
 const StyledCrudList = styled.div`
   /* styled 설정. https://styled-components.com/docs/basics#adapting-based-on-props */
 `;
 
-function CrudList({ ...props }) {
+function CrudList({ props }) {
   // useState 를 사용한 컴포넌트의 상태값 설정
   const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
   const [state, setState] = useState({ id: 0, name: '', age: 0 }); // 상태값이 참조타입 경우
-
+  const item = {
+    id: 1,
+    name: '슈퍼맨',
+    power: 100,
+  };
   // ref 만들기.
   // const refInput = useRef();
 
@@ -55,7 +60,19 @@ function CrudList({ ...props }) {
   // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
   return (
     <StyledCrudList>
-      <div>CrudList</div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>POWER</th>
+            <th>CRUD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <CrudListItem item={item}></CrudListItem>
+        </tbody>
+      </table>
     </StyledCrudList>
   );
 }

@@ -37,25 +37,26 @@ function CrudInput({ ...props }) {
   );
 
   // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.
-  const callback = useCallback(
-    (param) => {
-      // state 변경
-    },
-    [
-      /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
-    ],
-  );
+  const callback = useCallback((param) => {
+    // state 변경
+  }, []);
 
   // 이벤트 핸들러 작성.
   const handler = (e) => {
-    // 이벤트 핸들러는 화살표 함수로 만든다
     console.log(e.target);
   };
 
-  // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
   return (
     <StyledCrudInput>
-      <div>CrudInput</div>
+      <div>
+        <label htmlFor="">Name : </label>
+        <input type="text" name="name" placeholder="이름을 입력하세요" />
+      </div>
+      <div>
+        <label htmlFor="">Power : </label>
+        <input type="number" name="power" placeholder="숫자를 입력하세요" />
+      </div>
+      <button type="button">Add</button>
     </StyledCrudInput>
   );
 }

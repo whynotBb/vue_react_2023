@@ -25,7 +25,12 @@ function CrudContainer({ ...props }) {
   // useState 를 사용한 컴포넌트의 상태값 설정
   const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
   const [state, setState] = useState({ id: 0, name: '', age: 0 }); // 상태값이 참조타입 경우
-
+  const [items, setItems] = useState([
+    { id: 1, name: '슈퍼맨', power: 100 },
+    { id: 2, name: '아쿠아맨', power: 300 },
+    { id: 3, name: '스파이더맨', power: 500 },
+    { id: 4, name: '배트맨', power: 30 },
+  ]);
   // ref 만들기.
   // const refInput = useRef();
 
@@ -71,75 +76,10 @@ function CrudContainer({ ...props }) {
   return (
     <StyledCrudContainer>
       <div id="app">
-        <h1>Creat Read Update Delete</h1>
-        <div>
-          <div>
-            <label htmlFor="">Name : </label>
-            <input type="text" name="name" placeholder="이름을 입력하세요" />
-          </div>
-          <div>
-            <label htmlFor="">Power : </label>
-            <input type="number" name="power" placeholder="숫자를 입력하세요" />
-          </div>
-          <button type="button">Add</button>
-        </div>
+        <h1>Create Read Update Delete</h1>
+        <CrudInput />
         <hr />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>POWER</th>
-              <th>CRUD</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="">
-              <td>1</td>
-              <td>슈퍼맨</td>
-              <td>100</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-            <tr className="strong">
-              <td>2</td>
-              <td>아쿠아맨</td>
-              <td>300</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-            <tr className="strong">
-              <td>3</td>
-              <td>스파이더맨</td>
-              <td>500</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-            <tr className="strong">
-              <td>4</td>
-              <td>배트맨</td>
-              <td>30</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <CrudList />
       </div>
     </StyledCrudContainer>
   );
