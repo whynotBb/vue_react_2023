@@ -667,7 +667,43 @@
 
         3-6. 이벤트 핸들러 동작 여부 확인하다.
 
+3-7. CrudContainer 의 콜백 메서드 완성하기
+function CrudContainer(props) {
 
+... 중간 생략
+
+// items 배열에서 삭제하는 콜백 메서드 만들기. Array.filter() 를 사용한다
+const callbackDel = useCallback( (item) => {
+// ...생략
+}, [/* 메서드와 연관되는 상태(변수)명들을 기술 */]);
+
+// power를 100씩 증가 시키는 콜백 메서드 만들기. Array.map() 을 사용한다
+const callbackUp = useCallback( (item) => {
+// item.power = item.power + 100;
+// ...생략
+}, [/* 메서드와 연관되는 상태(변수)명들을 기술 */]);
+
+// power를 50씩 감소 시키는 콜백 메서드 만들기. Array.map() 을 사용한다
+const callbackDown = useCallback( (item) => {
+// item.power = item.power - 50;
+// ...생략
+}, [/* 메서드와 연관되는 상태(변수)명들을 기술 */]);
+
+// 새로운 값으로 수정하는 콜백 메서드 만들기. Array.map() 을 사용한다
+const callbackSave = useCallback( (newitem) => {
+// ...생략
+}, [/* 메서드와 연관되는 상태(변수)명들을 기술 */]);
+
+// 새로운 값을 추가하는 콜백 메서드 만들기.
+const callbackAdd = useCallback( (newitem) => {
+// items에서 최대 id 값을 구하기.
+// 방법1. items.map()과 items.reduce()를 사용하여 max id를 찾는 방법
+// items.push(param);
+// ...생략
+}, [/* 메서드와 연관되는 상태(변수)명들을 기술 */]);
+
+...이하 생략
+}
 
     ##################################
     작업 4. CrudInput 컴포넌트 기능 추가

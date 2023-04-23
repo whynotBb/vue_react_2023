@@ -58,28 +58,105 @@ function CrudContainer({ ...props }) {
 
   // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.
   const callback = useCallback(
-    (param) => {
-      // state 변경
-    },
+    (param) => {},
+    // state 변경
     [
       /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
     ],
   );
+  const callbackDel = useCallback(
+    (param) => {
+      //배열복제
+      const deleteid = param.id;
+      const newitems = items.filter((item) => {
+        if (item.id === deleteid) return false;
+        else return true;
+      });
+      debugger;
+      //배열할당
+      setItems(newitems);
+    },
+    [items],
+  );
+  const callbackUp = useCallback(
+    (param) => {
+      const modid = param.id;
+      const newitems = items.map((item) => {
+        if (item.id === modid) {
+          item.power = item.power + 100;
+        }
+        return item;
+      });
+      debugger;
+      //배열할당
+      setItems(newitems);
+    },
+    [items],
+  );
+  const callbackDown = useCallback(
+    (param) => {
+      const modid = param.id;
+      const newitems = items.map((item) => {
+        if (item.id === modid) {
+          item.power = item.power - 50;
+        }
+        return item;
+      });
+      debugger;
+      //배열할당
+      setItems(newitems);
+    },
+    [items],
+  );
+  const callbackSave = useCallback(
+    (newitem) => {
+      debugger;
+      const newitems = items.map((item) => {
+        if (item.id === newitem.id) {
+          return newitem;
+        } else {
+          return item;
+        }
+      });
+      setItems(newitems);
+    },
+    [items],
+  );
+  const callbackAdd = useCallback(
+    (newitem) => {
+      debugger;
+      // const ids = items.map((item) => item.id);
+      // const maxId = ids.reduce(
+      //   (pvalue, cvalue) => (pvalue > cvalue ? pvalue : cvalue),
+      //   0,
+      // );
+      const maxId = items
+        .map((item) => item.id)
+        .reduce((pvalue, cvalue) => (pvalue > cvalue ? pvalue : cvalue), 0);
 
-  // 이벤트 핸들러 작성.
-  const handler = (e) => {
-    // 이벤트 핸들러는 화살표 함수로 만든다
-    console.log(e.target);
-  };
+      const newId = maxId + 1;
+      newitem.id = newId;
+      // 배열에 추가
+      setItems([...items, newitem]);
+    },
+    // state 변경
+    [items],
+  );
 
   // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
   return (
     <StyledCrudContainer>
       <div id="app">
         <h1>Create Read Update Delete</h1>
-        <CrudInput />
+        <CrudInput callbackAdd={callbackAdd} />
         <hr />
-        <CrudList />
+        <CrudList
+          items={items}
+          callbackDel={callbackDel}
+          callbackUp={callbackUp}
+          callbackDown={callbackDown}
+          callbackSave={callbackSave}
+        />
       </div>
     </StyledCrudContainer>
   );
