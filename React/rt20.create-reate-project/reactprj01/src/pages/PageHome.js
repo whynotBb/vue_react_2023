@@ -59,12 +59,6 @@ function PageHome({ ...props }) {
           <li>
             <NavLink to="/todo">todo</NavLink>
           </li>
-          <li>
-            <NavLink to=""></NavLink>
-          </li>
-          <li>
-            <NavLink to=""></NavLink>
-          </li>
         </ul>
       </div>
       <Routes>
